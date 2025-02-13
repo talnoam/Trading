@@ -1,0 +1,17 @@
+.trading
+.vscode
+__pycache__
+
+stock-dashboard/node_modules/
+stock-dashboard/dist/
+stock-dashboard/.env
+stock-dashboard/.pnp
+stock-dashboard/.pnp.js
+stock-dashboard/.DS_Store
+
+stock-dashboard/npm-debug.log*
+stock-dashboard/yarn-debug.log*
+stock-dashboard/yarn-error.log*
+
+stock-dashboard/build
+stock-dashboard//coverage
