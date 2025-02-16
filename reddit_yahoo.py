@@ -1,6 +1,6 @@
 import praw
 import re
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timedelta
 from collections import Counter, defaultdict
 from yahoo_fin import stock_info as si
 import yfinance as yf
@@ -9,7 +9,7 @@ import os
 import pytz
 import argparse
 
-from credentials import CLIENT_ID, CLIENT_SECRET, USER_AGENT
+from data_fetch.credentials import CLIENT_ID, CLIENT_SECRET, USER_AGENT
 
 
 
@@ -152,7 +152,7 @@ def main(target_date, interval_minutes=5):
 
 # Run script
 if __name__ == "__main__":
-    # ## run it using python reddit_yahoo.py 2025-02-12 --interval 10 ###
+    # ## run it using python reddit_yahoo.py 2025-02-12 --interval 1 ###
 
     # target_date = '2025-02-12'
     # interval_minutes=5
@@ -160,7 +160,7 @@ if __name__ == "__main__":
     # Use argparse to allow date specification from command line
     parser = argparse.ArgumentParser(description="Fetch Reddit comments and analyze stock ticker mentions.")
     parser.add_argument("date", type=str, help="Date in YYYY-MM-DD format for fetching comments.")
-    parser.add_argument("--interval", type=int, default=5, help="Time interval in minutes for bucketing data (default: 5).")
+    parser.add_argument("--interval", type=int, default=1, help="Time interval in minutes for bucketing data (default: 1).")
 
     args = parser.parse_args()
     main(args.date, args.interval)
