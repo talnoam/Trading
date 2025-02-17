@@ -18,8 +18,8 @@ def fetch_comments(interval_minutes, reddit, subreddit, ISRAEL_TZ):
     Fetch comments for a specific date in Israel time based on selected interval.
     """
 
-    target_time = datetime.now().replace(second=0, microsecond=0)
-    end_time_ist = ISRAEL_TZ.localize(target_time)
+    target_time = datetime.now(pytz.utc).astimezone(ISRAEL_TZ).replace(second=0, microsecond=0)
+    end_time_ist = target_time
     start_time_ist = end_time_ist - timedelta(minutes=interval_minutes)
     print(f"\n🔄 Fetching all comments between {start_time_ist.strftime('%Y-%m-%d %H:%M:%S')} and {end_time_ist.strftime('%Y-%m-%d %H:%M:%S')} (Israel Time)...")
 
@@ -30,7 +30,7 @@ def fetch_comments(interval_minutes, reddit, subreddit, ISRAEL_TZ):
     comments = []
 
     for comment in subreddit.comments(limit=None):
-        comment_time = datetime.fromtimestamp(comment.created_utc, pytz.utc)
+        comment_time = datetime.fromtimestamp(comment.created_utc, pytz.utc).astimezone(ISRAEL_TZ)
         if start_time_utc <= comment.created_utc <= end_time_utc:
             comment_time_ist = comment_time.astimezone(ISRAEL_TZ)
             comments.append({

@@ -1,6 +1,9 @@
 .trading
 .vscode
 __pycache__
+data_fetch/credentials.py
+Trading_Access.json
+logs/
 
 stock-dashboard/node_modules/
 stock-dashboard/dist/

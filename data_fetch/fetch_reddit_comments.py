@@ -11,7 +11,9 @@ import argparse
 from utils import fetch_comments, analyze_ticker_trends
 from credentials import CLIENT_ID, CLIENT_SECRET, USER_AGENT, TRADING_FOLDER_ID
 
-CREDS_PATH = os.path.join(os.getcwd(), 'Trading Access.json')
+os.chdir(os.path.join(os.getcwd(), 'Trading'))
+
+CREDS_PATH = os.path.join(os.getcwd(), 'Trading_Access.json')
 
 # Load Google Drive API credentials
 def authenticate_google_services(creds_path):
@@ -133,7 +135,7 @@ def main(interval_minutes=5):
 
     if comments:
         # Extract target date
-        target_date = datetime.now(ISRAEL_TZ).strftime('%Y-%m-%d')
+        target_date = datetime.now(pytz.utc).astimezone(ISRAEL_TZ).strftime('%Y-%m-%d')
 
         # Update Google Sheets with new comments
         update_google_sheet(comments, target_date, CREDS_PATH)
