@@ -18,3 +18,5 @@ stock-dashboard/yarn-error.log*
 
 stock-dashboard/build
 stock-dashboard//coverage
+
+.DS_Store
